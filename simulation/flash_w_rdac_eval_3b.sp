@@ -85,16 +85,16 @@ E6 VREF3 GND Vm3 Vp1 1.0
 **simulation
 **.option method=gear reltol=1e-6 interp
 **.tran '1/Fclk' '64/Fclk'
-.tran '1/Fclk'  5NS
+**.tran '1/Fclk'  5NS
 .save OUTM_6 OUTM_5 OUTM_4 OUTM_3 OUTM_2 OUTP_2 OUTM_1 OUTP_1 OUTM_0 OUTP_0 CLK CLK2_B CLK2 CLK1_B CLK1 VCM VCOMP_M_2 VCOMP_P_2 Vm1 Vp3 VCOMP_M_1 VCOMP_P_1 Vm2 Vp2 VCOMP_M_0 VCOMP_P_0 Vm3 Vp1 VINM VINP GND VDD VREF1 VREF2 VREF3 VIDIFF @Vsupply
-
+.save all
 
 .control
-set wr_singlescale
-set wr_vecnames
-run
-*tran '1/Fclk' 5NS
-wrdata output.txt OUTM_0/1.8 + OUTM_1/1.8 + OUTM_2/1.8 + OUTM_3/1.8 + OUTM_4/1.8 + OUTM_5/1.8 + OUTM_6/1.8
+  set wr_singlescale
+  set wr_vecnames
+  *run
+  tran 16n 320ns
+  wrdata output.txt OUTM_0/1.8 + OUTM_1/1.8 + OUTM_2/1.8 + OUTM_3/1.8 + OUTM_4/1.8 + OUTM_5/1.8 + OUTM_6/1.8
 .endc
 
 
