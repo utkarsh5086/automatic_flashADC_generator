@@ -1,7 +1,7 @@
 ** Utkarsh Sharma 2024
 
 
-.include /Users/utkarshsharma/sscs_2024/strongARM_us/lvs/parameters.txt
+**.include /Users/utkarshsharma/sscs_2024/strongARM_us/lvs/parameters.txt
 .temp 25
 
 
@@ -15,6 +15,7 @@
 .param fclk = 100MEG
 *62.5MEG
 .param Tr = '0.05/fclk'
+.param Cload = 100f
 
 ** Add sources
 Vsupply VDD GND 1.8
