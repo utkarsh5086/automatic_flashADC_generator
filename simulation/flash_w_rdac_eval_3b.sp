@@ -1,7 +1,7 @@
 ** Utkarsh Sharma 2024
 
 
-*.include /Users/utkarshsharma/sscs_2024/strongARM_us/lvs/parameters.txt
+.include /Users/utkarshsharma/sscs_2024/strongARM_us/lvs/parameters.txt
 .temp 25
 
 
@@ -12,21 +12,20 @@
 .param delay = 2n
 .param vin = 0.4
 .param vref = 0.5
-.param Fclk = 62.5MEG
+.param fclk = 100MEG
 *62.5MEG
-.param Tr = '0.05/Fclk'
-.param Cload = 100f
+.param Tr = '0.05/fclk'
 
 ** Add sources
 Vsupply VDD GND 1.8
 
 **Import SKY130 lib
-.lib /content/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /usr/bin/miniconda3/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 **Import subcircuit
 **.include /Users/utkarshsharma/sscs_2024/strongARM_us/lvs/mystrongARM_lvsmag.spice
-.include /content/OpenFASOC/openfasoc/generators/glayout/flash_w_rdac_pex.spice
-.include /content/OpenFASOC/openfasoc/generators/glayout/rdac_pex.spice
+.include /Users/utkarshsharma/sscs_2024/strongARM_us/flash_w_rdac_pex.spice
+.include /Users/utkarshsharma/sscs_2024/strongARM_us/rdac_pex.spice
 
 *V1 VINP GND 'vcm+vin/2'
 *V2 VINM GND 'vcm-vin/2'
@@ -83,18 +82,18 @@ E5 VREF2 GND Vm2 Vp2 1.0
 E6 VREF3 GND Vm3 Vp1 1.0
 
 **simulation
-**.option method=gear reltol=1e-6 interp
-**.tran '1/Fclk' '64/Fclk'
-**.tran '1/Fclk'  5NS
-.save OUTM_6 OUTM_5 OUTM_4 OUTM_3 OUTM_2 OUTP_2 OUTM_1 OUTP_1 OUTM_0 OUTP_0 CLK CLK2_B CLK2 CLK1_B CLK1 VCM VCOMP_M_2 VCOMP_P_2 Vm1 Vp3 VCOMP_M_1 VCOMP_P_1 Vm2 Vp2 VCOMP_M_0 VCOMP_P_0 Vm3 Vp1 VINM VINP GND VDD VREF1 VREF2 VREF3 VIDIFF @Vsupply
+.option method=gear reltol=1e-6 interp
+.tran {1/fclk} {55/fclk} {0.25/fclk} 
+**.tran 10n 510ns
+.save OUTM_2 OUTP_2 OUTM_1 OUTP_1 OUTM_0 OUTP_0 CLK CLK2_B CLK2 CLK1_B CLK1 VCM VCOMP_M_2 VCOMP_P_2 Vm1 Vp3 VCOMP_M_1 VCOMP_P_1 Vm2 Vp2 VCOMP_M_0 VCOMP_P_0 Vm3 Vp1 VINM VINP GND VDD VREF1 VREF2 VREF3 VIDIFF @Vsupply
 .save all
 
 .control
-  set wr_singlescale
-  set wr_vecnames
-  *run
-  tran 16n 320ns
-  wrdata output.txt OUTM_0/1.8 + OUTM_1/1.8 + OUTM_2/1.8 + OUTM_3/1.8 + OUTM_4/1.8 + OUTM_5/1.8 + OUTM_6/1.8
+set wr_singlescale
+set wr_vecnames
+run
+**tran 10n 510ns 
+wrdata output.txt OUTM_0/1.8 + OUTM_1/1.8 + OUTM_2/1.8 + OUTM_3/1.8 + OUTM_4/1.8 + OUTM_5/1.8 + OUTM_6/1.8
 .endc
 
 
