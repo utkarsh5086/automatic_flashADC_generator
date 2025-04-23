@@ -21,12 +21,12 @@
 Vsupply VDD GND 1.8
 
 **Import SKY130 lib
-.lib /usr/bin/miniconda3/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /content/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 **Import subcircuit
 **.include /Users/utkarshsharma/sscs_2024/strongARM_us/lvs/mystrongARM_lvsmag.spice
-.include /Users/utkarshsharma/sscs_2024/strongARM_us/flash_w_rdac_pex.spice
-.include /Users/utkarshsharma/sscs_2024/strongARM_us/rdac_pex.spice
+.include /content/OpenFASOC/openfasoc/generators/glayout/flash_w_rdac_pex.spice
+.include /content/OpenFASOC/openfasoc/generators/glayout/rdac_pex.spice
 
 *V1 VINP GND 'vcm+vin/2'
 *V2 VINM GND 'vcm-vin/2'
