@@ -84,7 +84,7 @@ E6 VREF3 GND Vm3 Vp1 1.0
 
 **simulation
 .option method=gear reltol=1e-6 interp
-.tran {1/fclk} {67/fclk} {0.25/fclk} 
+.tran {1/fclk} {67/fclk} {0.75/fclk} 
 **.tran 10n 510ns
 .save OUTM_2 OUTP_2 OUTM_1 OUTP_1 OUTM_0 OUTP_0 CLK CLK2_B CLK2 CLK1_B CLK1 VCM VCOMP_M_2 VCOMP_P_2 Vm1 Vp3 VCOMP_M_1 VCOMP_P_1 Vm2 Vp2 VCOMP_M_0 VCOMP_P_0 Vm3 Vp1 VINM VINP GND VDD VREF1 VREF2 VREF3 VIDIFF @Vsupply
 .save all
